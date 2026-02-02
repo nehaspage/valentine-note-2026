@@ -1,131 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Rose Day 🌹</title>
+    <title>Happy Rose Day</title>
 
     <style>
         body {
           margin: 0;
           height: 100vh;
-          background: linear-gradient(135deg, #ff758c, #ff7eb3);
+          background: linear-gradient(135deg, #ff416c, #ff4b2b);
           display: flex;
+          flex-direction: column;
           justify-content: center;
           align-items: center;
-          font-family: 'Arial', sans-serif;
-          overflow: hidden;
-        }
-
-        .card {
-          background: white;
-          padding: 30px;
-          border-radius: 22px;
           text-align: center;
-          width: 90%;
-          max-width: 360px;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-          z-index: 2;
+          font-family: Arial, sans-serif;
         }
 
         h1 {
-          color: #d62828;
-          margin-bottom: 10px;
-        }
-
-        p {
-          font-size: 18px;
-          color: #444;
-          min-height: 60px;
+          color: white;
+          font-size: 60px;
+          letter-spacing: 4px;
+          animation: pulse 1.5s infinite;
         }
 
         button {
-          margin-top: 20px;
-          padding: 14px 26px;
+          margin-top: 30px;
+          padding: 14px 30px;
+          font-size: 18px;
           border: none;
           border-radius: 30px;
-          font-size: 16px;
           cursor: pointer;
-          background: #e63946;
-          color: white;
+          background: white;
+          color: #ff416c;
+          font-weight: bold;
           transition: transform 0.2s;
         }
 
-        button:active {
-          transform: scale(0.95);
+        button:hover {
+          transform: scale(1.05);
         }
 
-        .float {
-          position: absolute;
-          animation: floatUp 6s linear forwards;
-          pointer-events: none;
-        }
-
-        .rose {
-          font-size: 50px;   /* BIG roses 🌹 */
-        }
-
-        .heart {
-          font-size: 46px;   /* BIG hearts ❤️ */
-        }
-
-        @keyframes floatUp {
-          from {
-            transform: translateY(100vh);
-            opacity: 1;
-          }
-          to {
-            transform: translateY(-15vh);
-            opacity: 0;
-          }
+        @keyframes pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.08); }
+          100% { transform: scale(1); }
         }
     </style>
 </head>
 
 <body>
-
-<div class="card">
-    <h1>🌹 Happy Rose Day 🌹</h1>
-    <p id="message">
-        A rose for you, because you make my world beautiful ❤️
-    </p>
-    <button onclick="surprise()">Tap for a Surprise 💖</button>
-</div>
+<h1>🌹 HAPPY ROSE DAY 🌹</h1>
+<button onclick="goNext()">Click to continue ❤️</button>
 
 <script>
-    const loveLines = [
-      "You are the reason my heart smiles every day ❤️",
-      "This rose carries all my feelings for you 🌹",
-      "Every heartbeat whispers your name 💓",
-      "With you, even ordinary moments feel magical ✨",
-      "You are my favorite thought, always 💖",
-      "A rose for today, my love for forever 🌹❤️"
-    ];
-
-    function surprise() {
-      const msg = document.getElementById("message");
-      msg.innerText = loveLines[Math.floor(Math.random() * loveLines.length)];
-
-      // Create multiple roses & hearts together
-      for (let i = 0; i < 6; i++) {
-        createFloating("🌹", "rose");
-        createFloating("❤️", "heart");
-      }
-    }
-
-    function createFloating(symbol, className) {
-      const el = document.createElement("div");
-      el.className = `float ${className}`;
-      el.innerText = symbol;
-      el.style.left = Math.random() * 100 + "vw";
-      el.style.animationDuration = (Math.random() * 2 + 4) + "s";
-      document.body.appendChild(el);
-
-      setTimeout(() => {
-        el.remove();
-      }, 6000);
+    function goNext() {
+      window.location.href = "love.html";
     }
 </script>
-
 </body>
 </html>
