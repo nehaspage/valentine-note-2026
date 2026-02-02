@@ -9,7 +9,7 @@
         body {
           margin: 0;
           height: 100vh;
-          background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+          background: linear-gradient(135deg, #ff758c, #ff7eb3);
           display: flex;
           justify-content: center;
           align-items: center;
@@ -20,51 +20,62 @@
         .card {
           background: white;
           padding: 30px;
-          border-radius: 20px;
+          border-radius: 22px;
           text-align: center;
           width: 90%;
-          max-width: 350px;
-          box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+          max-width: 360px;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+          z-index: 2;
         }
 
         h1 {
-          color: #e63946;
+          color: #d62828;
           margin-bottom: 10px;
         }
 
         p {
           font-size: 18px;
           color: #444;
+          min-height: 60px;
         }
 
         button {
           margin-top: 20px;
-          padding: 12px 20px;
+          padding: 14px 26px;
           border: none;
           border-radius: 30px;
           font-size: 16px;
           cursor: pointer;
-          background: #ff4d6d;
+          background: #e63946;
           color: white;
+          transition: transform 0.2s;
         }
 
-        button:hover {
-          background: #e63946;
+        button:active {
+          transform: scale(0.95);
+        }
+
+        .float {
+          position: absolute;
+          animation: floatUp 6s linear forwards;
+          pointer-events: none;
         }
 
         .rose {
-          position: absolute;
-          font-size: 24px;
-          animation: float 6s linear infinite;
+          font-size: 50px;   /* BIG roses 🌹 */
         }
 
-        @keyframes float {
+        .heart {
+          font-size: 46px;   /* BIG hearts ❤️ */
+        }
+
+        @keyframes floatUp {
           from {
             transform: translateY(100vh);
             opacity: 1;
           }
           to {
-            transform: translateY(-10vh);
+            transform: translateY(-15vh);
             opacity: 0;
           }
         }
@@ -76,36 +87,42 @@
 <div class="card">
     <h1>🌹 Happy Rose Day 🌹</h1>
     <p id="message">
-        A rose for you to say how special you are 💕
+        A rose for you, because you make my world beautiful ❤️
     </p>
-    <button onclick="changeMessage()">Tap for a Surprise 🌈</button>
+    <button onclick="surprise()">Tap for a Surprise 💖</button>
 </div>
 
 <script>
-    const messages = [
-      "This rose is filled with love ❤️",
-      "You make every day beautiful 🌸",
-      "A rose for the one who makes me smile 😊",
-      "Sending you warmth, love & happiness 💖",
-      "You deserve all the roses today 🌹"
+    const loveLines = [
+      "You are the reason my heart smiles every day ❤️",
+      "This rose carries all my feelings for you 🌹",
+      "Every heartbeat whispers your name 💓",
+      "With you, even ordinary moments feel magical ✨",
+      "You are my favorite thought, always 💖",
+      "A rose for today, my love for forever 🌹❤️"
     ];
 
-    function changeMessage() {
+    function surprise() {
       const msg = document.getElementById("message");
-      msg.innerText = messages[Math.floor(Math.random() * messages.length)];
-      createRose();
+      msg.innerText = loveLines[Math.floor(Math.random() * loveLines.length)];
+
+      // Create multiple roses & hearts together
+      for (let i = 0; i < 6; i++) {
+        createFloating("🌹", "rose");
+        createFloating("❤️", "heart");
+      }
     }
 
-    function createRose() {
-      const rose = document.createElement("div");
-      rose.className = "rose";
-      rose.innerText = "🌹";
-      rose.style.left = Math.random() * 100 + "vw";
-      rose.style.animationDuration = (Math.random() * 3 + 4) + "s";
-      document.body.appendChild(rose);
+    function createFloating(symbol, className) {
+      const el = document.createElement("div");
+      el.className = `float ${className}`;
+      el.innerText = symbol;
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.animationDuration = (Math.random() * 2 + 4) + "s";
+      document.body.appendChild(el);
 
       setTimeout(() => {
-        rose.remove();
+        el.remove();
       }, 6000);
     }
 </script>
