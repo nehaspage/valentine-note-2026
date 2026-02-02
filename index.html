@@ -1,31 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For You ❤️</title>
+    <title>Happy Rose Day 🌹</title>
 
     <style>
         body {
-          background-color: #ffe6ea;
-          font-family: Arial, sans-serif;
+          margin: 0;
+          height: 100vh;
+          background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: 'Arial', sans-serif;
+          overflow: hidden;
+        }
+
+        .card {
+          background: white;
+          padding: 30px;
+          border-radius: 20px;
           text-align: center;
-          padding: 40px;
+          width: 90%;
+          max-width: 350px;
+          box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
+
         h1 {
-          color: #d6336c;
+          color: #e63946;
+          margin-bottom: 10px;
         }
+
         p {
           font-size: 18px;
-          color: #333;
+          color: #444;
+        }
+
+        button {
+          margin-top: 20px;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 30px;
+          font-size: 16px;
+          cursor: pointer;
+          background: #ff4d6d;
+          color: white;
+        }
+
+        button:hover {
+          background: #e63946;
+        }
+
+        .rose {
+          position: absolute;
+          font-size: 24px;
+          animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+          from {
+            transform: translateY(100vh);
+            opacity: 1;
+          }
+          to {
+            transform: translateY(-10vh);
+            opacity: 0;
+          }
         }
     </style>
 </head>
 
 <body>
-<h1>Happy Valentine’s 💕</h1>
-<p>
-    This page is just for you.<br>
-    Thank you for being special ❤️
-</p>
+
+<div class="card">
+    <h1>🌹 Happy Rose Day 🌹</h1>
+    <p id="message">
+        A rose for you to say how special you are 💕
+    </p>
+    <button onclick="changeMessage()">Tap for a Surprise 🌈</button>
+</div>
+
+<script>
+    const messages = [
+      "This rose is filled with love ❤️",
+      "You make every day beautiful 🌸",
+      "A rose for the one who makes me smile 😊",
+      "Sending you warmth, love & happiness 💖",
+      "You deserve all the roses today 🌹"
+    ];
+
+    function changeMessage() {
+      const msg = document.getElementById("message");
+      msg.innerText = messages[Math.floor(Math.random() * messages.length)];
+      createRose();
+    }
+
+    function createRose() {
+      const rose = document.createElement("div");
+      rose.className = "rose";
+      rose.innerText = "🌹";
+      rose.style.left = Math.random() * 100 + "vw";
+      rose.style.animationDuration = (Math.random() * 3 + 4) + "s";
+      document.body.appendChild(rose);
+
+      setTimeout(() => {
+        rose.remove();
+      }, 6000);
+    }
+</script>
+
 </body>
 </html>
